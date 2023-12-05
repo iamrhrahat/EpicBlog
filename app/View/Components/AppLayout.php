@@ -3,16 +3,17 @@
 namespace App\View\Components;
 
 use Closure;
-use Illuminate\Contracts\View\View;
+use Illuminate\View\View;
 use Illuminate\View\Component;
 use App\Models\Category;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class AppLayout extends Component
 {
     /**
      * Create a new component instance.
      */
+    // public Collection $categories ;
     public function __construct(public ?string $metaTitle = null, public ?string $metaDescription = null, public ?string $metaKeyword = null)
     {
         //
