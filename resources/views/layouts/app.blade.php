@@ -60,25 +60,28 @@
             </a>
         </div>
         <div :class="open ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
-            <div class="w-full container mx-auto flex  sm:flex-row items-center justify-center text-sm font-bold uppercase mt-0 px-6 py-2 ">
-                <a href="{{ route('home') }}"
-   class="hover:bg-green-600 hover:text-white rounded py-2 px-4 mx-2 {{ request('category') == null ? 'bg-green-600 text-white' : '' }}">
-   Home
-</a>
+            <div class="w-full container mx-auto flex  sm:flex-row items-center justify-between text-sm font-bold uppercase mt-0 px-6 py-2 ">
+                <div>
+                    <a href="{{ route('home') }}"
+                class="bg-green-600 text-white rounded py-2 px-4 mx-2 {{ request('category') == null ? 'bg-green-600 text-white' : '' }}">
+                Home
+                </a>
 
-@foreach ($categories as $category)
-    @if ($category && $category->slug)
-        <a href="{{ route('by-category', ['category' => $category]) }}"
-           class="hover:bg-green-600 hover:text-white rounded py-2 px-4 mx-2 {{ (request('category') && request('category')->slug == $category->slug) ? 'bg-green-600 text-white' : '' }}">
-           {{ $category->title }}
-        </a>
-    @endif
-@endforeach
+                @foreach ($categories as $category)
+                @if ($category && $category->slug)
+                    <a href="{{ route('by-category', ['category' => $category]) }}"
+                       class="hover:bg-green-600 hover:text-white rounded py-2 px-4 mx-2 {{ (request('category') && request('category')->slug == $category->slug) ? 'bg-green-600 text-white' : '' }}">
+                       {{ $category->title }}
+                    </a>
+                @endif
+                @endforeach
 
 
 
                 <a href="{{route('about-us')}}" class="hover:bg-green-600 hover:text-white rounded py-2 px-4 mx-2 ">About Us</a>
-                @auth
+                </div>
+                <div>
+                    @auth
                 <div class="flex sm:items-center sm:ml-6">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
@@ -120,9 +123,10 @@
                 @else
 
                 <a href="{{route('login')}}" class="hover:bg-green-600 hover:text-white rounded py-2 px-4 mx-2 ">Login</a>
-                <a href="{{route('register')}}" class="hover:bg-green-600 hover:text-white rounded py-2 px-4 mx-2 ">Register</a>
+                <a href="{{route('register')}}" class="bg-green-600 text-white rounded py-2 px-4 mx-2 ">Register</a>
 
                 @endauth
+                </div>
             </div>
         </div>
     </nav>
