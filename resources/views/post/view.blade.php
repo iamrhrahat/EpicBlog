@@ -9,24 +9,26 @@
             </a>
             <div class="bg-white flex flex-col justify-start p-6">
                 <div class="flex gap-4">
-                @foreach ($post->categories as $category)
-
-
-                <a href="{{route('by-category', $category)}}" class="text-green-600 text-sm font-bold uppercase pb-4">{{$category->title}}</a>
-                @endforeach
+                    @foreach($post->categories as $category)
+                        <a href="#" class="text-blue-700 text-sm font-bold uppercase pb-4">
+                            {{$category->title}}
+                        </a>
+                    @endforeach
                 </div>
                 <h1 class="text-3xl font-bold hover:text-gray-700 pb-4">
                     {{$post->title}}
                 </h1>
                 <p href="#" class="text-sm pb-8">
-                    By <a href="#" class="font-semibold hover:text-gray-800">{{$post->user->name}}</a>, Published on {{$post->getFormattedDate()}}
+                    By <a href="#" class="font-semibold hover:text-gray-800">{{$post->user->name}}</a>, Published on
+                    {{$post->getFormattedDate()}} | {{ $post->human_read_time }}
                 </p>
                 <div>
                     {!! $post->body !!}
                 </div>
+
+                <livewire:upvote-downvote :post="$post"/>
             </div>
         </article>
-
         <div class="w-full flex pt-6">
             <div class="w-1/2">
                 @if($prev)
@@ -43,6 +45,9 @@
                 @endif
             </div>
             <div class="w-1/2">
+                @if ($next)
+
+
             <a href="{{route('view', $next)}}" class="block w-full bg-white shadow hover:shadow-md text-right p-6">
                 <p class="text-lg text-blue-800 font-bold flex items-center justify-end">
                     Next
@@ -52,6 +57,7 @@
                     {{$next->title}}
                 </p>
             </a>
+            @endif
         </div>
         </div>
 
