@@ -1,20 +1,22 @@
-   <?php
-   /** @var $posts \Illuminate\Pagination\LengthAwarePaginator */
-   ?>
+
    <!-- Posts Section -->
-   <x-app-layout :meta-title="'The RahatBlog - Posts by Category '.$category->title" meta-description="Rahat's Personal Blog about world" meta-keyword="Personal Blog, blog">
-    <section class="w-full md:w-2/3 flex flex-col items-center px-3">
+   <x-app-layout :meta-title="'The RahatBlog - Posts by Category '.$category->title"
+    meta-description="Rahat's Personal Blog about world' . $category->title" meta-keyword="Personal Blog, blog">
 
-@foreach ($posts as $post)
-        <x-post-item :post="$post"></x-post-item>
-@endforeach
+  <div class="container mx-auto flex flex-wrap py-6">
 
-        {{$posts->onEachSide(1)->links()}}
+      <!-- Posts Section -->
+      <section class="w-full md:w-2/3  px-3">
+          <div class=" flex flex-col items-center">
+              @foreach($posts as $post)
+                  <x-post-item :post="$post"/>
+              @endforeach
+          </div>
+          {{ $posts->links() }}
+      </section>
 
-    <!-- Pagination -->
+      <!-- Sidebar Section -->
+      <x-sidebar />
 
-
-</section>
-<!-- Sidebar Section -->
-<x-sidebar/>
+  </div>
 </x-app-layout>

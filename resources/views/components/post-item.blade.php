@@ -1,8 +1,8 @@
 
        <article class="bg-white flex flex-col shadow my-4">
             <!-- Article Image -->
-            <a href="{{route('view', $post)}}" class="hover:opacity-75">
-                <img src="{{$post->getThumbnail()}}" alt="{{$post->title}}" class="aspect-[4/3] object-contain">
+            <a href="{{route('view', $post)}}" class="hover:opacity-75 h-full">
+                <img src="{{ $post->getThumbnail() }}" style="height: 70%; width: 60%; margin-left:15%" alt="{{$post->title}}" class="aspect-[4/3] object-contain">
             </a>
             <div class="bg-white flex flex-col justify-start p-6">
                 <div class="flex gap-4">
@@ -17,13 +17,16 @@
                 <a href="{{route('view', $post)}}" class="text-3xl font-bold hover:text-gray-700 pb-4">
                     {{$post->title}}
                 </a>
+                @if(isset($showAuthor) && $showAuthor)
+
+
 
 
                 <p href="#" class="text-sm pb-3">
                     By <a href="#" class="font-semibold hover:text-gray-800">"{{$post->user->name}}"</a>, Published on
                     {{$post->getFormattedDate()}} | {{ $post->human_read_time }}
                 </p>
-
+                @endif
 
                 <a href="{{route('view', $post)}}" class="pb-6">
                     "{{$post->shortBody()}}"
